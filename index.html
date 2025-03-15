@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeGent - Best Anime Site on the Web!!!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            background-image: url('https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif');
+            color: #ff00ff;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            cursor: url('https://cur.cursors-4u.net/anime/ani-12/ani1151.cur'), auto;
+        }
+        
+        .container {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 5px solid #ff00ff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 48px;
+            margin-top: 10px;
+            text-shadow: 2px 2px 4px #000000;
+            animation: blinker 1s linear infinite;
+        }
+        
+        @keyframes blinker {
+            50% { opacity: 0.7; }
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+            background-color: #0000ff;
+            padding: 5px;
+        }
+        
+        .menu-item {
+            margin: 0 10px;
+            color: #ffffff;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 20px;
+            text-shadow: 2px 2px 4px #ff0000;
+        }
+        
+        .menu-item:hover {
+            color: #ffff00;
+            transform: scale(1.2);
+        }
+        
+        .content {
+            display: flex;
+            height: 400px;
+        }
+        
+        .sidebar {
+            width: 200px;
+            background-color: #660066;
+            padding: 10px;
+            color: #00ff00;
+            border: 2px dashed #ffff00;
+        }
+        
+        .main {
+            flex-grow: 1;
+            padding: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome {
+            font-size: 24px;
+            color: #00ffff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .counter {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        
+        .counter img {
+            height: 30px;
+        }
+        
+        .animated-gif {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+        }
+        
+        #gif1 {
+            top: 50px;
+            left: 50px;
+            animation: bounce1 5s infinite;
+        }
+        
+        #gif2 {
+            top: 150px;
+            left: 250px;
+            animation: bounce2 7s infinite;
+        }
+        
+        #gif3 {
+            top: 250px;
+            left: 150px;
+            animation: bounce3 4s infinite;
+        }
+        
+        @keyframes bounce1 {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(100px, 50px); }
+            50% { transform: translate(200px, 0); }
+            75% { transform: translate(100px, -50px); }
+        }
+        
+        @keyframes bounce2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-100px, 100px) rotate(180deg); }
+        }
+        
+        @keyframes bounce3 {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+        }
+        
+        .footer {
+            text-align: center;
+            color: #ffff00;
+            margin-top: 10px;
+            font-size: 12px;
+            animation: colorchange 2s infinite;
+        }
+        
+        @keyframes colorchange {
+            0% { color: #ff0000; }
+            25% { color: #00ff00; }
+            50% { color: #0000ff; }
+            75% { color: #ffff00; }
+            100% { color: #ff0000; }
+        }
+        
+        marquee {
+            background-color: #ff0000;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        
+        .hit-counter {
+            display: inline-block;
+            background-color: #000000;
+            color: #00ff00;
+            padding: 3px;
+            border: 1px solid #00ff00;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+        
+        .under-construction {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 100px;
+            height: 100px;
+            animation: rotate 3s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Enemy styling */
+        #enemy {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            z-index: 100;
+            transition: transform 0.3s;
+            cursor: crosshair;
+        }
+        
+        #enemy.hit {
+            filter: hue-rotate(180deg);
+            transform: scale(0.8);
+        }
+        
+        /* Score display */
+        #score-display {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff0000;
+            color: #ffffff;
+            font-size: 16px;
+            padding: 5px 10px;
+            border: 3px ridge #ffff00;
+            font-weight: bold;
+            z-index: 200;
+        }
+        
+        /* Attack animation */
+        @keyframes attack {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5) rotate(-20deg); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Hit message */
+        .hit-message {
+            position: absolute;
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 20px;
+            text-shadow: 0 0 5px #ffff00;
+            pointer-events: none;
+            animation: float-up 1s forwards;
+            z-index: 300;
+        }
+        
+        @keyframes float-up {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-50px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AnimeGent</h1>
+        </div>
+        
+        <marquee scrollamount="5" behavior="alternate">WELCOME TO THE BEST ANIME SITE ON THE WEB!!! UNDER CONSTRUCTION!!! COME BACK SOON!!!</marquee>
+        
+        <div class="menu">
+            <a href="#" class="menu-item">HOME</a>
+            <a href="anime.html" class="menu-item">ANIME</a>
+            <a href="#" class="menu-item">MANGA</a>
+            <a href="#" class="menu-item">FORUM</a>
+            <a href="#" class="menu-item">LINKS</a>
+        </div>
+        
+        <div class="content">
+            <div class="sidebar">
+                <h3>Top Anime!!!</h3>
+                <ul>
+                    <li>Sailor Moon</li>
+                    <li>Dragon Ball Z</li>
+                    <li>Pokémon</li>
+                    <li>Naruto</li>
+                    <li>Evangelion</li>
+                </ul>
+                
+                <div class="counter">
+                    <div>VISITORS:</div>
+                    <div class="hit-counter">012345</div>
+                    <div>SINCE 03/14/2002</div>
+                </div>
+            </div>
+            
+            <div class="main">
+                <div class="welcome">
+                    Welcome to AnimeGent!
+                </div>
+                <p>This site is dedicated to all ANIME fans! Check back daily for updates!</p>
+                <p>⭐ <b>NEW:</b> Defeat the evil enemy by clicking on them! ⭐</p>
+                
+                <img id="gif1" class="animated-gif" src="https://media.giphy.com/media/yr7n0u3qzO9nG/giphy.gif" alt="Anime Gif">
+                <img id="gif2" class="animated-gif" src="https://media.giphy.com/media/CKlHyhtUVVz5S/giphy.gif" alt="Anime Gif">
+                <img id="gif3" class="animated-gif" src="https://media.giphy.com/media/huDFNjjz4aGLm/giphy.gif" alt="Anime Gif">
+                
+                <img class="under-construction" src="https://media.giphy.com/media/3o7btQ8jDTPGDpgc6I/giphy.gif" alt="Under Construction">
+                
+                <!-- Enemy character -->
+                <img id="enemy" src="https://media.giphy.com/media/nXYDxHuaQ9s52/giphy.gif" alt="Enemy">
+                
+                <!-- Score display -->
+                <div id="score-display">SCORE: 0</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2002 AnimeGent | Best viewed in Internet Explorer 6.0 | 800x600 resolution
+        </div>
+    </div>
+    
+    <script>
+        // Bouncing title effect
+        let direction = 1;
+        let position = 0;
+        
+        function bounceTitle() {
+            document.title = "AnimeGent - Best Anime Site!!!".substring(position);
+            position += direction;
+            
+            if (position > 15) direction = -1;
+            if (position < 0) direction = 1;
+            
+            setTimeout(bounceTitle, 200);
+        }
+        
+        bounceTitle();
+        
+        // Random popup effect
+        setTimeout(function() {
+            alert("WELCOME TO ANIMEGENT!!! Don't forget to sign our guestbook!");
+        }, 3000);
+        
+        // Enemy functionality
+        const enemy = document.getElementById('enemy');
+        const container = document.querySelector('.container');
+        const main = document.querySelector('.main');
+        const scoreDisplay = document.getElementById('score-display');
+        
+        let score = 0;
+        let enemyHealth = 5;
+        let enemySpeed = 3;
+        let mainRect = main.getBoundingClientRect();
+        let containerRect = container.getBoundingClientRect();
+        
+        // Initial enemy position
+        let enemyX = Math.random() * (mainRect.width - 80);
+        let enemyY = Math.random() * (mainRect.height - 80);
+        enemy.style.left = enemyX + 'px';
+        enemy.style.top = enemyY + 'px';
+        
+        // Track mouse position
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        container.addEventListener('mousemove', function(e) {
+            // Calculate mouse position relative to the container
+            mouseX = e.clientX - containerRect.left;
+            mouseY = e.clientY - containerRect.top;
+        });
+        
+        // Enemy movement
+        function moveEnemy() {
+            // Calculate direction to move towards the mouse
+            const dx = mouseX - enemyX - 40; // Center of enemy
+            const dy = mouseY - enemyY - 40;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // Move enemy towards mouse
+            if (distance > 5) {
+                enemyX += (dx / distance) * enemySpeed;
+                enemyY += (dy / distance) * enemySpeed;
+                
+                // Keep enemy within bounds
+                enemyX = Math.max(0, Math.min(mainRect.width - 80, enemyX));
+                enemyY = Math.max(0, Math.min(mainRect.height - 80, enemyY));
+                
+                enemy.style.left = enemyX + 'px';
+                enemy.style.top = enemyY + 'px';
+            }
+            
+            requestAnimationFrame(moveEnemy);
+        }
+        
+        // Start enemy movement
+        moveEnemy();
+        
+        // Handle enemy clicks
+        enemy.addEventListener('click', function(e) {
+            // Prevent default behavior
+            e.preventDefault();
+            
+            // Attack animation
+            enemy.classList.add('hit');
+            setTimeout(() => {
+                enemy.classList.remove('hit');
+            }, 300);
+            
+            // Reduce enemy health and update score
+            enemyHealth--;
+            score += 100;
+            scoreDisplay.textContent = 'SCORE: ' + score;
+            
+            // Create hit message
+            const hitMessage = document.createElement('div');
+            hitMessage.className = 'hit-message';
+            hitMessage.textContent = '+100!';
+            hitMessage.style.left = (e.clientX - containerRect.left) + 'px';
+            hitMessage.style.top = (e.clientY - containerRect.top) + 'px';
+            container.appendChild(hitMessage);
+            
+            // Remove hit message after animation
+            setTimeout(() => {
+                container.removeChild(hitMessage);
+            }, 1000);
+            
+            // Check if enemy is defeated
+            if (enemyHealth <= 0) {
+                // Respawn enemy
+                enemyHealth = 5 + Math.floor(score / 500); // Gets harder
+                enemySpeed = 3 + Math.floor(score / 1000); // Gets faster
+                
+                // Move enemy to a new random position
+                enemyX = Math.random() * (mainRect.width - 80);
+                enemyY = Math.random() * (mainRect.height - 80);
+                enemy.style.left = enemyX + 'px';
+                enemy.style.top = enemyY + 'px';
+                
+                // Bonus points for defeating enemy
+                score += 500;
+                scoreDisplay.textContent = 'SCORE: ' + score;
+                
+                // Show message
+                alert('Enemy defeated! +500 points! New enemy appears!');
+            }
+        });
+        
+        // Update container and main rectangles when window resizes
+        window.addEventListener('resize', function() {
+            mainRect = main.getBoundingClientRect();
+            containerRect = container.getBoundingClientRect();
+        });
+    </script>
+</body>
+</html> 

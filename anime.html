@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeGent - HOT ANIME LISTINGS!!!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            background-image: url('https://media.giphy.com/media/3og0IV7MOCfnm85iRa/giphy.gif');
+            color: #ff00ff;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            cursor: url('https://cur.cursors-4u.net/anime/ani-12/ani1151.cur'), auto;
+        }
+        
+        .container {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 5px solid #ff00ff;
+            position: relative;
+            overflow: auto;
+        }
+        
+        .header {
+            text-align: center;
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 48px;
+            margin-top: 10px;
+            text-shadow: 2px 2px 4px #000000;
+            animation: blinker 1s linear infinite;
+        }
+        
+        @keyframes blinker {
+            50% { opacity: 0.7; }
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+            background-color: #0000ff;
+            padding: 5px;
+        }
+        
+        .menu-item {
+            margin: 0 10px;
+            color: #ffffff;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 20px;
+            text-shadow: 2px 2px 4px #ff0000;
+        }
+        
+        .menu-item:hover {
+            color: #ffff00;
+            transform: scale(1.2);
+        }
+        
+        .menu-item.active {
+            color: #ffff00;
+            text-decoration: underline;
+        }
+        
+        .anime-list {
+            padding: 20px;
+        }
+        
+        .anime-item {
+            display: flex;
+            margin-bottom: 30px;
+            background-color: rgba(50, 0, 50, 0.7);
+            border: 2px solid #00ffff;
+            padding: 10px;
+            position: relative;
+        }
+        
+        .anime-item::before {
+            content: "HOT!!!";
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: #ff0000;
+            color: #ffffff;
+            padding: 3px 10px;
+            font-size: 14px;
+            font-weight: bold;
+            animation: flash 0.5s infinite;
+        }
+        
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .anime-image {
+            width: 150px;
+            height: 100px;
+            border: 3px ridge #ffff00;
+            margin-right: 15px;
+        }
+        
+        .anime-details {
+            flex-grow: 1;
+        }
+        
+        .anime-title {
+            color: #00ffff;
+            font-size: 24px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        
+        .anime-rating {
+            color: #ffff00;
+            margin: 5px 0;
+            letter-spacing: 3px;
+        }
+        
+        .anime-description {
+            color: #ffffff;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        
+        .download-button {
+            background: linear-gradient(to bottom, #00ff00, #006600);
+            color: #ffffff;
+            border: 2px outset #00ff00;
+            padding: 5px 10px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .download-button:hover {
+            background: linear-gradient(to bottom, #00ff00, #003300);
+        }
+        
+        .new-label {
+            background-color: #ff0000;
+            color: #ffffff;
+            font-size: 12px;
+            padding: 2px 5px;
+            margin-left: 10px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 49% { opacity: 0; }
+            50%, 100% { opacity: 1; }
+        }
+        
+        .footer {
+            text-align: center;
+            color: #ffff00;
+            margin-top: 10px;
+            font-size: 12px;
+            padding: 5px;
+            animation: colorchange 2s infinite;
+        }
+        
+        @keyframes colorchange {
+            0% { color: #ff0000; }
+            25% { color: #00ff00; }
+            50% { color: #0000ff; }
+            75% { color: #ffff00; }
+            100% { color: #ff0000; }
+        }
+        
+        marquee {
+            background-color: #ff0000;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        
+        .gif-corner {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            bottom: 10px;
+            right: 10px;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AnimeGent</h1>
+        </div>
+        
+        <marquee scrollamount="5" behavior="alternate">TOP ANIME SERIES!!! DOWNLOAD NOW!!! UPDATED WEEKLY!!!</marquee>
+        
+        <div class="menu">
+            <a href="index.html" class="menu-item">HOME</a>
+            <a href="anime.html" class="menu-item active">ANIME</a>
+            <a href="#" class="menu-item">MANGA</a>
+            <a href="#" class="menu-item">FORUM</a>
+            <a href="#" class="menu-item">LINKS</a>
+        </div>
+        
+        <div class="anime-list">
+            <div class="anime-item">
+                <img class="anime-image" src="https://media.giphy.com/media/GRSnxyhJnPsaQy9YLn/giphy.gif" alt="Dragon Ball Z">
+                <div class="anime-details">
+                    <div class="anime-title">Dragon Ball Z <span class="new-label">NEW!!!</span></div>
+                    <div class="anime-rating">★★★★★</div>
+                    <div class="anime-description">
+                        The BEST anime ever made! Follow Goku and friends as they fight to save the universe from powerful enemies!
+                    </div>
+                    <a href="#" class="download-button" onclick="alert('DOWNLOAD STARTING... PLEASE WAIT 5-10 HOURS!'); return false;">DOWNLOAD EPISODES!</a>
+                </div>
+            </div>
+            
+            <div class="anime-item">
+                <img class="anime-image" src="https://media.giphy.com/media/bGm9FuBCGg4SY/giphy.gif" alt="Sailor Moon">
+                <div class="anime-details">
+                    <div class="anime-title">Sailor Moon</div>
+                    <div class="anime-rating">★★★★☆</div>
+                    <div class="anime-description">
+                        Fighting evil by moonlight! Winning love by daylight! Never running from a real fight!
+                    </div>
+                    <a href="#" class="download-button" onclick="alert('DOWNLOAD STARTING... PLEASE WAIT 5-10 HOURS!'); return false;">DOWNLOAD EPISODES!</a>
+                </div>
+            </div>
+            
+            <div class="anime-item">
+                <img class="anime-image" src="https://media.giphy.com/media/j2NCMwOYK0xYKaYZMc/giphy.gif" alt="Naruto">
+                <div class="anime-details">
+                    <div class="anime-title">Naruto <span class="new-label">NEW!!!</span></div>
+                    <div class="anime-rating">★★★★★</div>
+                    <div class="anime-description">
+                        Believe it! Join Naruto on his quest to become the greatest Hokage ever!
+                    </div>
+                    <a href="#" class="download-button" onclick="alert('DOWNLOAD STARTING... PLEASE WAIT 5-10 HOURS!'); return false;">DOWNLOAD EPISODES!</a>
+                </div>
+            </div>
+            
+            <div class="anime-item">
+                <img class="anime-image" src="https://media.giphy.com/media/fSvqyvXn1M3btN8sDh/giphy.gif" alt="Pokemon">
+                <div class="anime-details">
+                    <div class="anime-title">Pokémon</div>
+                    <div class="anime-rating">★★★★☆</div>
+                    <div class="anime-description">
+                        Gotta catch 'em all! Follow Ash and Pikachu on their journey to become Pokémon Masters!
+                    </div>
+                    <a href="#" class="download-button" onclick="alert('DOWNLOAD STARTING... PLEASE WAIT 5-10 HOURS!'); return false;">DOWNLOAD EPISODES!</a>
+                </div>
+            </div>
+        </div>
+        
+        <img class="gif-corner" src="https://media.giphy.com/media/LbwJp26pqGf0k/giphy.gif" alt="Anime Character">
+        
+        <div class="footer">
+            © 2002 AnimeGent | Best viewed in Internet Explorer 6.0 | 800x600 resolution
+        </div>
+    </div>
+    
+    <script>
+        // Nostalgic popup when page loads
+        setTimeout(function() {
+            alert("Welcome to the ANIME page! Don't use Kazaa or Limewire to download anime!");
+        }, 1000);
+    </script>
+</body>
+</html> 
